@@ -51,6 +51,31 @@ public class GameApplicationTests {
 
     }
 
+    @Test
+    public void simpleCorrectExecutionDiagonal(){
+        GameDTO gameDTO = gameService.startNewGame();
+        UUID id = gameDTO.getId();
+        MessageDTO messageDTO;
+        String currentPlayer = gameDTO.getFirstPlayer();
+
+        messageDTO = gameService.makeMovement(id, new MovementDTO(id, currentPlayer, new Position(0,0)));
+        currentPlayer = nextPlayer(currentPlayer);
+        assertThat(messageDTO.getWinner()).isEqualTo(null);
+        messageDTO = gameService.makeMovement(id, new MovementDTO(id, currentPlayer, new Position(1,0)));
+        currentPlayer = nextPlayer(currentPlayer);
+        assertThat(messageDTO.getWinner()).isEqualTo(null);
+        messageDTO = gameService.makeMovement(id, new MovementDTO(id, currentPlayer, new Position(1,1)));
+        currentPlayer = nextPlayer(currentPlayer);
+        assertThat(messageDTO.getWinner()).isEqualTo(null);
+        messageDTO = gameService.makeMovement(id, new MovementDTO(id, currentPlayer, new Position(1,2)));
+        currentPlayer = nextPlayer(currentPlayer);
+        assertThat(messageDTO.getWinner()).isEqualTo(null);
+        messageDTO = gameService.makeMovement(id, new MovementDTO(id, currentPlayer, new Position(2,2)));
+        currentPlayer = nextPlayer(currentPlayer);
+        assertThat(messageDTO.getWinner()).isEqualTo(gameDTO.getFirstPlayer());
+
+    }
+
     private String nextPlayer(String player){
         return player.equalsIgnoreCase("X") ? "Y" : "X";
     }

@@ -56,12 +56,12 @@ public class GameService {
             int y = movement.getPosition().getY();
             boardM.setPosicao(x, y, getIntByPlayer(movement.getPlayer()));
             room.setNextPlayer(nextPlayer(movement.getPlayer()));
-            if (boardM.boardCompleto()) {
-                return new MessageDTO("Partida finalizada", null, null, false);
-            } else if (boardM.ganhou() != 0) {
+            if (boardM.ganhou() != 0) {
                 return new MessageDTO("Partida finalizada", getPlayerByInt(boardM.ganhou()), null, false);
-            }
-            return new MessageDTO(null, null, null, false);
+            }else if (boardM.boardCompleto()) {
+                return new MessageDTO("Partida finalizada", null, null, false);
+            } else
+                return new MessageDTO(null, null, null, false);
         }
     }
 }
