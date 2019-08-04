@@ -26,24 +26,6 @@ public class GameService {
         return new GameDTO(id, firstPlayer);
     }
 
-    private String getRandomPlayer() {
-        String[] strings = new String[]{"X", "Y"};
-        Random random = new Random();
-        return strings[random.nextInt(strings.length)];
-    }
-
-    private String nextPlayer(String currentPlayer) {
-        return currentPlayer.equalsIgnoreCase("X") ? "Y" : "X";
-    }
-
-    private int getIntByPlayer(String player) {
-        return player.equalsIgnoreCase("X") ? 1 : -1;
-    }
-
-    private String getPlayerByInt(int player){
-        return player == 1 ? "X" : "Y";
-    }
-
     public MessageDTO makeMovement(UUID id, MovementDTO movement) {
         Room room = board.get(id);
         if (room == null) {
@@ -63,5 +45,23 @@ public class GameService {
             } else
                 return new MessageDTO(null, null, null, false);
         }
+    }
+
+    private String getRandomPlayer() {
+        String[] strings = new String[]{"X", "Y"};
+        Random random = new Random();
+        return strings[random.nextInt(strings.length)];
+    }
+
+    private String nextPlayer(String currentPlayer) {
+        return currentPlayer.equalsIgnoreCase("X") ? "Y" : "X";
+    }
+
+    private int getIntByPlayer(String player) {
+        return player.equalsIgnoreCase("X") ? 1 : -1;
+    }
+
+    private String getPlayerByInt(int player){
+        return player == 1 ? "X" : "Y";
     }
 }

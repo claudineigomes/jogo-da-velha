@@ -62,6 +62,14 @@ function verif() {
 }
 
 function novo() {
+    for (i=0; i<3; i++){
+        for (j=0; j<3; j++){
+            nomecelula = 'cel' + i + j
+            console.log(nomecelula)
+            document.getElementById(nomecelula).innerHTML = '';
+
+        }
+    }
     $.ajax({
         url: '/game',
         type: 'post',
@@ -75,4 +83,6 @@ function novo() {
     });
 }
 
-novo();
+document.addEventListener('DOMContentLoaded', function() {
+    novo();
+}, false);
