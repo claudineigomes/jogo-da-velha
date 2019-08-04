@@ -42,6 +42,10 @@ curl -X POST \
 
 ```
 
+Também acessando pelo browser a url http://localhost:8080 será aberto uma interface para o jogo:
+
+![Print Jogo da Velha](print.png?raw=true "Print Jogo da Velha")
+
 ## Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
