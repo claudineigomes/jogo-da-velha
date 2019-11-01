@@ -1,0 +1,13 @@
+spec:
+  selector:
+  app: ${spring.application.name}
+  ports:
+    - name: http
+  port: 8080
+  protocol: TCP
+  targetPort: 8080
+metadata:
+  labels:
+  app: ${spring.application.name}
+  commit: ${git.commit.id.describe}
+  name: ${spring.application.name}
